@@ -1,0 +1,841 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2023-01-25 Wed 13:47 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Euler Tasks</title>
+<meta name="author" content="Georgy" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Euler Tasks</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org5e95be4">1. Preface</a></li>
+<li><a href="#orgbdfe69c">2. Problem 1</a></li>
+<li><a href="#org50f2a36">3. Problem 2</a></li>
+<li><a href="#orgd820692">4. Problem 5</a></li>
+<li><a href="#orgb14eb9f">5. Problem 6</a></li>
+<li><a href="#org88b85d4">6. Problem 7</a></li>
+<li><a href="#org98b97ed">7. Problem 8</a></li>
+<li><a href="#org1a1e686">8. Problem 13</a></li>
+<li><a href="#orge7453c4">9. problem 25</a></li>
+<li><a href="#org3f25f1f">10. Problem 31</a></li>
+<li><a href="#orgfae505f">11. Problem 48</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org5e95be4" class="outline-2">
+<h2 id="org5e95be4"><span class="section-number-2">1.</span> Preface</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Hi!
+</p>
+
+<p>
+I&rsquo;ve done this small notebook with the help of Emacs Org mode, using Babel to create and run code cells, specifying <code>:tangle</code> option to send code to according source files.
+Org mode has so much power!
+It is really my main tool when it comes to literal programming, data-science and writing documentation.
+</p>
+
+<p>
+This readme also automatically generated by Emacs, but it lacks syntax highlighting.
+I invite you to open EulerTaks.html here in the repository in your browswer for a better view with highlightng.
+And guess what? Html is also generated with Emacs!
+Same stand for latex parts of the document.
+</p>
+
+<p>
+This is my Project Euler problems solutions.
+Mostly to solve them, I used Python, as it is my main language, and I work 90% of the time with it.
+Python is good when implementing things to production, talk to various API&rsquo;s, and just to collect all the pieces in one puzzle.
+</p>
+
+<p>
+But also I used R, I love R when it comes to some quick data discovery analysis.
+It has so many useful tools without even importing a library.
+It also has Purr, which is a nice <i>functional</i> style library, which makes R more readable and declarative.
+In general, I might say I like R more than Python since it is a bit close to functional languages.
+</p>
+
+<p>
+<a href="#org98b97ed">Problem 8</a> is solved with Haskell.
+I&rsquo;m quite new to Haskell, and got interested in it after got more familiar with R and Lisp.
+I&rsquo;m also running Xmonad as my window manager.
+</p>
+
+<p>
+Finally, some problems, when it comes to turning somthing to string :), I&rsquo;ve done with Emacs Lisp.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgbdfe69c" class="outline-2">
+<h2 id="orgbdfe69c"><span class="section-number-2">2.</span> Problem 1</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+<a href="https://projecteuler.net/problem=1">Link to the problem</a>
+If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.
+</p>
+
+<p>
+Find the sum of all the multiples of 3 or 5 below 1000.
+</p>
+
+<p>
+Let&rsquo;s solve this with Python with a bit of feel of functional style.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #e67e80;">def</span> <span style="color: #a7c080;">multiples</span>(range_):
+    <span style="color: #e67e80;">return</span> (x <span style="color: #e67e80;">for</span> x <span style="color: #e67e80;">in</span> <span style="color: #83c092;">range</span>(range_) <span style="color: #e67e80;">if</span> x % <span style="color: #d699b6;">3</span> == <span style="color: #d699b6;">0</span>
+        <span style="color: #e67e80;">or</span> x % <span style="color: #d699b6;">5</span> == <span style="color: #d699b6;">0</span>)
+
+
+<span style="color: #e67e80;">def</span> <span style="color: #a7c080;">sum_multiples</span>(range_):
+    <span style="color: #e67e80;">return</span> <span style="color: #83c092;">sum</span>(multiples(range_))
+
+
+<span style="color: #83c092;">print</span>(sum_multiples(<span style="color: #d699b6;">1000</span> + <span style="color: #d699b6;">1</span>))
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org50f2a36" class="outline-2">
+<h2 id="org50f2a36"><span class="section-number-2">3.</span> Problem 2</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+<a href="https://projecteuler.net/problem=2">Link to the problem</a>
+Each new term in the Fibonacci sequence is generated by adding the previous two terms. By starting with 1 and 2, the first 10 terms will be:
+</p>
+
+<pre class="example" id="org18d92e6">
+1, 2, 3, 5, 8, 13, 21, 34, 55, 89, ...
+</pre>
+
+<p>
+By considering the terms in the Fibonacci sequence whose values do not exceed four million, find the sum of the even-valued terms.
+</p>
+
+<p>
+We can use a very basic Python while loop
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #7fbbb3;">we_are_looking</span> = <span style="color: #d699b6;">4</span> * <span style="color: #d699b6;">10</span> ** <span style="color: #d699b6;">6</span> <span style="color: #859289; font-style: italic;"># </span><span style="color: #859289; font-style: italic;">4 million</span>
+
+<span style="color: #e67e80;">def</span> <span style="color: #a7c080;">find_fib_sum</span>(number_of):
+    <span style="color: #7fbbb3;">first</span> = <span style="color: #d699b6;">1</span>
+    <span style="color: #7fbbb3;">second</span> = <span style="color: #d699b6;">1</span>
+    <span style="color: #7fbbb3;">last</span> = <span style="color: #d699b6;">0</span>
+    <span style="color: #7fbbb3;">sum_fibs</span> = <span style="color: #d699b6;">0</span>
+
+    <span style="color: #e67e80;">while</span> last &lt; <span style="color: #7fbbb3;">number_of</span>:
+        last = (first + second)
+
+        <span style="color: #e67e80;">if</span> last % <span style="color: #d699b6;">2</span> == <span style="color: #d699b6;">0</span>: <span style="color: #859289; font-style: italic;"># </span><span style="color: #859289; font-style: italic;">find even</span>
+            <span style="color: #7fbbb3;">sum_fibs</span> += last
+
+        <span style="color: #7fbbb3;">first</span> = <span style="color: #83c092;">int</span>(second)
+        <span style="color: #7fbbb3;">second</span> = <span style="color: #83c092;">int</span>(last)
+
+    <span style="color: #e67e80;">return</span> sum_fibs
+
+<span style="color: #83c092;">print</span>(find_fib_sum(we_are_looking))
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd820692" class="outline-2">
+<h2 id="orgd820692"><span class="section-number-2">4.</span> Problem 5</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+<a href="https://projecteuler.net/problem=5">Link to the problem</a>
+2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
+</p>
+
+<p>
+What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
+</p>
+
+<p>
+Basically, we need to find <i>lowest common multiplier</i>.
+<a href="https://en.wikipedia.org/wiki/Euclidean_algorithm">We know</a> that for three numbers:
+</p>
+
+<p>
+\[ lcm(a, b, c) = lcm(a, lcm(b,c) \]
+</p>
+
+<p>
+And in Python we can use gcd function from fractions, and reduce functional method:
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #e67e80;">from</span> math <span style="color: #e67e80;">import</span> gcd
+<span style="color: #e67e80;">from</span> functools <span style="color: #e67e80;">import</span> <span style="color: #83c092;">reduce</span>
+
+<span style="color: #7fbbb3;">our_lcm</span> = <span style="color: #83c092;">reduce</span>(<span style="color: #e67e80;">lambda</span> a, b: <span style="color: #83c092;">int</span>(a * b / gcd(a,b)), <span style="color: #83c092;">range</span>(<span style="color: #d699b6;">1</span>, <span style="color: #d699b6;">21</span>))
+
+<span style="color: #83c092;">print</span>(our_lcm)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb14eb9f" class="outline-2">
+<h2 id="orgb14eb9f"><span class="section-number-2">5.</span> Problem 6</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+<a href="https://projecteuler.net/problem=6">Link to the problem</a>
+The sum of the squares of the first ten natural numbers is,
+</p>
+
+<p>
+k
+\[ 1^{2} + 2^{2} + ... 10^{2} = 385\]
+</p>
+
+<p>
+The square of the sum of the first ten natural numbers is,
+</p>
+
+<p>
+\[(1+2+...+10)^2 = 55^2 = 3025\]
+</p>
+
+<p>
+Hence the difference between the sum of the squares of the first ten natural numbers and the square of the sum is
+</p>
+
+<p>
+\[ 3025 - 385 = 2640 \]
+</p>
+
+<p>
+Find the difference between the sum of the squares of the first one hundred natural numbers and the square of the sum.
+</p>
+
+
+<p>
+We can do that easily with R since it&rsquo;s <i>vectorized</i>.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-R"><span style="color: #a7c080;">f</span> <span style="color: #83c092;">&lt;-</span> <span style="color: #e67e80;">function</span>(range){
+
+  x = c(<span style="color: #d699b6;">1</span>:range)
+
+  <span style="color: #e67e80;">return</span>(sum(x)^<span style="color: #d699b6;">2</span> - sum(x^<span style="color: #d699b6;">2</span>))
+}
+
+
+y <span style="color: #83c092;">&lt;-</span> f(<span style="color: #d699b6;">100</span>)
+
+print(y)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org88b85d4" class="outline-2">
+<h2 id="org88b85d4"><span class="section-number-2">6.</span> Problem 7</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+<a href="https://projecteuler.net/problem=7">Link to the problem</a>
+</p>
+
+<p>
+By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we can see that the 6th prime is 13.
+</p>
+
+<p>
+What is the 10 001st prime number?
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #e67e80;">def</span> <span style="color: #a7c080;">is_prime</span>(n):
+    <span style="color: #e67e80;">if</span> n &lt; <span style="color: #d699b6;">2</span>: <span style="color: #e67e80;">pass</span>
+    <span style="color: #e67e80;">for</span> i <span style="color: #e67e80;">in</span> <span style="color: #83c092;">range</span>(<span style="color: #d699b6;">2</span>, <span style="color: #83c092;">int</span>(n**<span style="color: #d699b6;">0.5</span>) + <span style="color: #d699b6;">1</span>):    <span style="color: #859289; font-style: italic;"># </span><span style="color: #859289; font-style: italic;">prime always less sqrt(n)</span>
+        <span style="color: #e67e80;">if</span> n % i == <span style="color: #d699b6;">0</span>:
+            <span style="color: #e67e80;">return</span> <span style="color: #83c092;">False</span>
+    <span style="color: #e67e80;">return</span> <span style="color: #83c092;">True</span>
+
+
+<span style="color: #e67e80;">def</span> <span style="color: #a7c080;">prime</span>(we_need):
+    num_primes = <span style="color: #d699b6;">0</span>
+    p = <span style="color: #d699b6;">1</span>
+
+    <span style="color: #e67e80;">while</span> num_primes &lt; we_need:
+        p += <span style="color: #d699b6;">1</span>
+        <span style="color: #e67e80;">if</span> is_prime(p):
+            num_primes += <span style="color: #d699b6;">1</span>
+    <span style="color: #e67e80;">return</span> p
+
+we_need = <span style="color: #d699b6;">10001</span>
+<span style="color: #83c092;">print</span>(prime(we_need))
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org98b97ed" class="outline-2">
+<h2 id="org98b97ed"><span class="section-number-2">7.</span> Problem 8</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+<a href="https://projecteuler.net/problem=8">Link to the problem</a>
+The four adjacent digits in the 1000-digit number that have the greatest product are 9 × 9 × 8 × 9 = 5832.
+</p>
+
+<p>
+Find the thirteen adjacent digits in the 1000-digit number that have the greatest product. What is the value of this product?
+</p>
+
+<p>
+I&rsquo;m not that good in Haskell yet, don&rsquo;t judge :D
+</p>
+
+<div class="org-src-container">
+<pre class="src src-haskell"><span style="color: #e67e80;">import</span> <span style="color: #a7c080;">Data.Char</span> (digitToInt)
+<span style="color: #e67e80;">import</span> <span style="color: #a7c080;">Data.List</span> (tails)
+
+<span style="color: #a7c080;">main</span> <span style="color: #7fbbb3;">::</span> <span style="color: #a7c080;">IO</span><span style="color: #a7c080;">()</span>
+<span style="color: #a7c080;">main</span> <span style="color: #7fbbb3;">=</span> print <span style="color: #7fbbb3;">$</span> maximum products
+
+<span style="color: #a7c080;">series</span> <span style="color: #7fbbb3;">::</span> <span style="color: #a7c080;">String</span>
+<span style="color: #a7c080;">series</span> <span style="color: #7fbbb3;">=</span>
+  <span style="color: #a7c080;">"73167176531330624919225119674426574742355349194934"</span> <span style="color: #7fbbb3;">&lt;&gt;</span>
+  <span style="color: #a7c080;">"96983520312774506326239578318016984801869478851843"</span> <span style="color: #7fbbb3;">&lt;&gt;</span>
+  <span style="color: #a7c080;">"85861560789112949495459501737958331952853208805511"</span> <span style="color: #7fbbb3;">&lt;&gt;</span>
+  <span style="color: #a7c080;">"12540698747158523863050715693290963295227443043557"</span> <span style="color: #7fbbb3;">&lt;&gt;</span>
+  <span style="color: #a7c080;">"66896648950445244523161731856403098711121722383113"</span> <span style="color: #7fbbb3;">&lt;&gt;</span>
+  <span style="color: #a7c080;">"62229893423380308135336276614282806444486645238749"</span> <span style="color: #7fbbb3;">&lt;&gt;</span>
+  <span style="color: #a7c080;">"30358907296290491560440772390713810515859307960866"</span> <span style="color: #7fbbb3;">&lt;&gt;</span>
+  <span style="color: #a7c080;">"70172427121883998797908792274921901699720888093776"</span> <span style="color: #7fbbb3;">&lt;&gt;</span>
+  <span style="color: #a7c080;">"65727333001053367881220235421809751254540594752243"</span> <span style="color: #7fbbb3;">&lt;&gt;</span>
+  <span style="color: #a7c080;">"52584907711670556013604839586446706324415722155397"</span> <span style="color: #7fbbb3;">&lt;&gt;</span>
+  <span style="color: #a7c080;">"53697817977846174064955149290862569321978468622482"</span> <span style="color: #7fbbb3;">&lt;&gt;</span>
+  <span style="color: #a7c080;">"83972241375657056057490261407972968652414535100474"</span> <span style="color: #7fbbb3;">&lt;&gt;</span>
+  <span style="color: #a7c080;">"82166370484403199890008895243450658541227588666881"</span> <span style="color: #7fbbb3;">&lt;&gt;</span>
+  <span style="color: #a7c080;">"16427171479924442928230863465674813919123162824586"</span> <span style="color: #7fbbb3;">&lt;&gt;</span>
+  <span style="color: #a7c080;">"17866458359124566529476545682848912883142607690042"</span> <span style="color: #7fbbb3;">&lt;&gt;</span>
+  <span style="color: #a7c080;">"24219022671055626321111109370544217506941658960408"</span> <span style="color: #7fbbb3;">&lt;&gt;</span>
+  <span style="color: #a7c080;">"07198403850962455444362981230987879927244284909188"</span> <span style="color: #7fbbb3;">&lt;&gt;</span>
+  <span style="color: #a7c080;">"84580156166097919133875499200524063689912560717606"</span> <span style="color: #7fbbb3;">&lt;&gt;</span>
+  <span style="color: #a7c080;">"05886116467109405077541002256983155200055935729725"</span> <span style="color: #7fbbb3;">&lt;&gt;</span>
+  <span style="color: #a7c080;">"71636269561882670428252483600823257530420752963450"</span>
+
+<span style="color: #a7c080;">products</span> <span style="color: #7fbbb3;">::</span> [<span style="color: #a7c080;">Int</span>]
+<span style="color: #a7c080;">products</span> <span style="color: #7fbbb3;">=</span> <span style="color: #e67e80;">do</span>
+  <span style="color: #e67e80;">let</span> number <span style="color: #7fbbb3;">=</span> map (fromIntegral <span style="color: #7fbbb3;">.</span> digitToInt) <span style="color: #7fbbb3;">$</span> series
+  map (product <span style="color: #7fbbb3;">.</span> take <span style="color: #d699b6;">13</span>) (tails number)
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-shell">runghc problem8.hs
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org1a1e686" class="outline-2">
+<h2 id="org1a1e686"><span class="section-number-2">8.</span> Problem 13</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+<a href="https://projecteuler.net/problem=13">Link to the problem</a>
+</p>
+
+<p>
+Work out the first ten digits of the sum of the following one-hundred 50-digit numbers.
+</p>
+
+<p>
+Lisp is also a great tool to turn everything to string because of the way it treats its own code!
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #a7c080;">(</span><span style="color: #e67e80;">setq</span> euler
+  <span style="color: #e67e80;">'</span><span style="color: #e67e80;">(</span><span style="color: #d699b6;">37107287533902102798797998220837590246510135740250</span>
+    <span style="color: #d699b6;">46376937677490009712648124896970078050417018260538</span>
+    <span style="color: #d699b6;">74324986199524741059474233309513058123726617309629</span>
+    <span style="color: #d699b6;">91942213363574161572522430563301811072406154908250</span>
+    <span style="color: #d699b6;">23067588207539346171171980310421047513778063246676</span>
+    <span style="color: #d699b6;">89261670696623633820136378418383684178734361726757</span>
+    <span style="color: #d699b6;">28112879812849979408065481931592621691275889832738</span>
+    <span style="color: #d699b6;">44274228917432520321923589422876796487670272189318</span>
+    <span style="color: #d699b6;">47451445736001306439091167216856844588711603153276</span>
+    <span style="color: #d699b6;">70386486105843025439939619828917593665686757934951</span>
+    <span style="color: #d699b6;">62176457141856560629502157223196586755079324193331</span>
+    <span style="color: #d699b6;">64906352462741904929101432445813822663347944758178</span>
+    <span style="color: #d699b6;">92575867718337217661963751590579239728245598838407</span>
+    <span style="color: #d699b6;">58203565325359399008402633568948830189458628227828</span>
+    <span style="color: #d699b6;">80181199384826282014278194139940567587151170094390</span>
+    <span style="color: #d699b6;">35398664372827112653829987240784473053190104293586</span>
+    <span style="color: #d699b6;">86515506006295864861532075273371959191420517255829</span>
+    <span style="color: #d699b6;">71693888707715466499115593487603532921714970056938</span>
+    <span style="color: #d699b6;">54370070576826684624621495650076471787294438377604</span>
+    <span style="color: #d699b6;">53282654108756828443191190634694037855217779295145</span>
+    <span style="color: #d699b6;">36123272525000296071075082563815656710885258350721</span>
+    <span style="color: #d699b6;">45876576172410976447339110607218265236877223636045</span>
+    <span style="color: #d699b6;">17423706905851860660448207621209813287860733969412</span>
+    <span style="color: #d699b6;">81142660418086830619328460811191061556940512689692</span>
+    <span style="color: #d699b6;">51934325451728388641918047049293215058642563049483</span>
+    <span style="color: #d699b6;">62467221648435076201727918039944693004732956340691</span>
+    <span style="color: #d699b6;">15732444386908125794514089057706229429197107928209</span>
+    <span style="color: #d699b6;">55037687525678773091862540744969844508330393682126</span>
+    <span style="color: #d699b6;">18336384825330154686196124348767681297534375946515</span>
+    <span style="color: #d699b6;">80386287592878490201521685554828717201219257766954</span>
+    <span style="color: #d699b6;">78182833757993103614740356856449095527097864797581</span>
+    <span style="color: #d699b6;">16726320100436897842553539920931837441497806860984</span>
+    <span style="color: #d699b6;">48403098129077791799088218795327364475675590848030</span>
+    <span style="color: #d699b6;">87086987551392711854517078544161852424320693150332</span>
+    <span style="color: #d699b6;">59959406895756536782107074926966537676326235447210</span>
+    <span style="color: #d699b6;">69793950679652694742597709739166693763042633987085</span>
+    <span style="color: #d699b6;">41052684708299085211399427365734116182760315001271</span>
+    <span style="color: #d699b6;">65378607361501080857009149939512557028198746004375</span>
+    <span style="color: #d699b6;">35829035317434717326932123578154982629742552737307</span>
+    <span style="color: #d699b6;">94953759765105305946966067683156574377167401875275</span>
+    <span style="color: #d699b6;">88902802571733229619176668713819931811048770190271</span>
+    <span style="color: #d699b6;">25267680276078003013678680992525463401061632866526</span>
+    <span style="color: #d699b6;">36270218540497705585629946580636237993140746255962</span>
+    <span style="color: #d699b6;">24074486908231174977792365466257246923322810917141</span>
+    <span style="color: #d699b6;">91430288197103288597806669760892938638285025333403</span>
+    <span style="color: #d699b6;">34413065578016127815921815005561868836468420090470</span>
+    <span style="color: #d699b6;">23053081172816430487623791969842487255036638784583</span>
+    <span style="color: #d699b6;">11487696932154902810424020138335124462181441773470</span>
+    <span style="color: #d699b6;">63783299490636259666498587618221225225512486764533</span>
+    <span style="color: #d699b6;">67720186971698544312419572409913959008952310058822</span>
+    <span style="color: #d699b6;">95548255300263520781532296796249481641953868218774</span>
+    <span style="color: #d699b6;">76085327132285723110424803456124867697064507995236</span>
+    <span style="color: #d699b6;">37774242535411291684276865538926205024910326572967</span>
+    <span style="color: #d699b6;">23701913275725675285653248258265463092207058596522</span>
+    <span style="color: #d699b6;">29798860272258331913126375147341994889534765745501</span>
+    <span style="color: #d699b6;">18495701454879288984856827726077713721403798879715</span>
+    <span style="color: #d699b6;">38298203783031473527721580348144513491373226651381</span>
+    <span style="color: #d699b6;">34829543829199918180278916522431027392251122869539</span>
+    <span style="color: #d699b6;">40957953066405232632538044100059654939159879593635</span>
+    <span style="color: #d699b6;">29746152185502371307642255121183693803580388584903</span>
+    <span style="color: #d699b6;">41698116222072977186158236678424689157993532961922</span>
+    <span style="color: #d699b6;">62467957194401269043877107275048102390895523597457</span>
+    <span style="color: #d699b6;">23189706772547915061505504953922979530901129967519</span>
+    <span style="color: #d699b6;">86188088225875314529584099251203829009407770775672</span>
+    <span style="color: #d699b6;">11306739708304724483816533873502340845647058077308</span>
+    <span style="color: #d699b6;">82959174767140363198008187129011875491310547126581</span>
+    <span style="color: #d699b6;">97623331044818386269515456334926366572897563400500</span>
+    <span style="color: #d699b6;">42846280183517070527831839425882145521227251250327</span>
+    <span style="color: #d699b6;">55121603546981200581762165212827652751691296897789</span>
+    <span style="color: #d699b6;">32238195734329339946437501907836945765883352399886</span>
+    <span style="color: #d699b6;">75506164965184775180738168837861091527357929701337</span>
+    <span style="color: #d699b6;">62177842752192623401942399639168044983993173312731</span>
+    <span style="color: #d699b6;">32924185707147349566916674687634660915035914677504</span>
+    <span style="color: #d699b6;">99518671430235219628894890102423325116913619626622</span>
+    <span style="color: #d699b6;">73267460800591547471830798392868535206946944540724</span>
+    <span style="color: #d699b6;">76841822524674417161514036427982273348055556214818</span>
+    <span style="color: #d699b6;">97142617910342598647204516893989422179826088076852</span>
+    <span style="color: #d699b6;">87783646182799346313767754307809363333018982642090</span>
+    <span style="color: #d699b6;">10848802521674670883215120185883543223812876952786</span>
+    <span style="color: #d699b6;">71329612474782464538636993009049310363619763878039</span>
+    <span style="color: #d699b6;">62184073572399794223406235393808339651327408011116</span>
+    <span style="color: #d699b6;">66627891981488087797941876876144230030984490851411</span>
+    <span style="color: #d699b6;">60661826293682836764744779239180335110989069790714</span>
+    <span style="color: #d699b6;">85786944089552990653640447425576083659976645795096</span>
+    <span style="color: #d699b6;">66024396409905389607120198219976047599490197230297</span>
+    <span style="color: #d699b6;">64913982680032973156037120041377903785566085089252</span>
+    <span style="color: #d699b6;">16730939319872750275468906903707539413042652315011</span>
+    <span style="color: #d699b6;">94809377245048795150954100921645863754710598436791</span>
+    <span style="color: #d699b6;">78639167021187492431995700641917969777599028300699</span>
+    <span style="color: #d699b6;">15368713711936614952811305876380278410754449733078</span>
+    <span style="color: #d699b6;">40789923115535562561142322423255033685442488917353</span>
+    <span style="color: #d699b6;">44889911501440648020369068063960672322193204149535</span>
+    <span style="color: #d699b6;">41503128880339536053299340368006977710650566631954</span>
+    <span style="color: #d699b6;">81234880673210146739058568557934581403627822703280</span>
+    <span style="color: #d699b6;">82616570773948327592232845941706525094512325230608</span>
+    <span style="color: #d699b6;">22918802058777319719839450180888072429661980811197</span>
+    <span style="color: #d699b6;">77158542502016545090413245809786882778948721859617</span>
+    <span style="color: #d699b6;">72107838435069186155435662884062257473692284509516</span>
+    <span style="color: #d699b6;">20849603980134001723930671666823555245252804609722</span>
+    <span style="color: #d699b6;">53503534226472524250874054075591789781264330331690</span><span style="color: #e67e80;">)</span><span style="color: #a7c080;">)</span>
+
+
+<span style="color: #a7c080;">(</span><span style="color: #83c092;">message</span><span style="color: #e67e80;">(</span><span style="color: #83c092;">substring</span> <span style="color: #7fbbb3;">(</span><span style="color: #83c092;">format</span> <span style="color: #a7c080;">"%s"</span> <span style="color: #83c092;">(</span><span style="color: #83c092;">apply</span> <span style="color: #e67e80;">#'</span><span style="color: #83c092;">+</span>  euler<span style="color: #83c092;">)</span><span style="color: #7fbbb3;">)</span><span style="color: #d699b6;">0</span> <span style="color: #d699b6;">10</span><span style="color: #e67e80;">)</span><span style="color: #a7c080;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge7453c4" class="outline-2">
+<h2 id="orge7453c4"><span class="section-number-2">9.</span> problem 25</h2>
+<div class="outline-text-2" id="text-9">
+<p>
+<a href="https://projecteuler.net/problem=25">Link to the problem</a>
+The Fibonacci sequence is defined by the recurrence relation:
+</p>
+
+<p>
+\[F_n = F_n−1 + F_n−2, \text{where } F_1 = 1 \text{ and } F_2 = 1\]
+</p>
+
+<p>
+Hence the first 12 terms will be:
+</p>
+
+<p>
+\[F_1 = 1\]
+\[F_2 = 1\]
+\[F_3 = 2\]
+\[F_4 = 3\]
+\[F_5 = 5\]
+\[F_6 = 8\]
+\[F_7 = 13\]
+\[F_8 = 21\]
+\[F_9 = 34\]
+\[F_10 = 55\]
+\[F_11 = 89\]
+\[F_12 = 144\]
+</p>
+
+<p>
+The 12th term, F12, is the first term to contain three digits.
+</p>
+
+<p>
+What is the index of the first term in the Fibonacci sequence to contain 1000 digits?
+</p>
+
+<p>
+Well, since we already dealt with Fibonacci in <a href="#org50f2a36">Problem 2</a>, this should not be too hard to do with Python:
+it will exceed the limit for printing the integer though.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #7fbbb3;">fib</span> = [<span style="color: #d699b6;">0</span>, <span style="color: #d699b6;">1</span>]
+
+<span style="color: #7fbbb3;">iter_</span> = <span style="color: #d699b6;">2</span>
+
+<span style="color: #859289; font-style: italic;">#</span><span style="color: #859289; font-style: italic;">loop breaks when the number is 1000 digits long</span>
+<span style="color: #e67e80;">while</span> <span style="color: #83c092;">True</span>:
+    fib_new = fib[iter_ - <span style="color: #d699b6;">1</span>] + fib[iter_ - <span style="color: #d699b6;">2</span>]
+    fib.append(fib_new)
+    <span style="color: #e67e80;">if</span> fib_new &gt; <span style="color: #d699b6;">10</span> ** <span style="color: #d699b6;">999</span>:
+        <span style="color: #83c092;">print</span>(iter_)
+        <span style="color: #e67e80;">break</span>
+    <span style="color: #7fbbb3;">iter_</span> += <span style="color: #d699b6;">1</span>
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3f25f1f" class="outline-2">
+<h2 id="org3f25f1f"><span class="section-number-2">10.</span> Problem 31</h2>
+<div class="outline-text-2" id="text-10">
+<p>
+<a href="https://projecteuler.net/problem=31">Link to the problem</a>
+</p>
+
+<p>
+In the United Kingdom the currency is made up of pound (£) and pence (p). There are eight coins in general circulation:
+</p>
+
+<pre class="example" id="orgd93c824">
+1p, 2p, 5p, 10p, 20p, 50p, £1 (100p), and £2 (200p).
+</pre>
+
+<p>
+It is possible to make £2 in the following way:
+</p>
+
+<pre class="example" id="orgfedf76e">
+1×£1 + 1×50p + 2×20p + 1×5p + 1×2p + 3×1p
+</pre>
+
+<p>
+How many different ways can £2 be made using any number of coins?
+</p>
+
+<p>
+This is where we can use simple <i>recursion</i> in R:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-R">my.coins <span style="color: #83c092;">&lt;-</span> c(<span style="color: #d699b6;">1</span>,<span style="color: #d699b6;">2</span>,<span style="color: #d699b6;">5</span>,<span style="color: #d699b6;">10</span>,<span style="color: #d699b6;">20</span>,<span style="color: #d699b6;">50</span>,<span style="color: #d699b6;">100</span>,<span style="color: #d699b6;">200</span>)
+my.coins.num <span style="color: #83c092;">&lt;-</span> length(my.coins)
+my.money <span style="color: #83c092;">&lt;-</span> <span style="color: #d699b6;">200</span>
+
+
+<span style="color: #a7c080;">find.change</span> <span style="color: #83c092;">&lt;-</span> <span style="color: #e67e80;">function</span>(money, num.coins) {
+    s <span style="color: #83c092;">&lt;-</span> <span style="color: #d699b6;">0</span>
+    range <span style="color: #83c092;">&lt;-</span> c(<span style="color: #d699b6;">1</span>:num.coins)
+
+    <span style="color: #e67e80;">for</span> ( i <span style="color: #e67e80;">in</span> range ) {
+        remaining <span style="color: #83c092;">&lt;-</span> money-my.coins[i]
+
+        <span style="color: #e67e80;">if</span>( remaining == <span style="color: #d699b6;">0</span> )
+            s <span style="color: #83c092;">&lt;-</span> s + <span style="color: #d699b6;">1</span>
+
+        <span style="color: #e67e80;">if</span>(remaining &gt; <span style="color: #d699b6;">0</span>)
+            s <span style="color: #83c092;">&lt;-</span> s + find.change( remaining, i )
+    }
+    <span style="color: #e67e80;">return</span>(s)
+}
+
+my.change <span style="color: #83c092;">&lt;-</span> find.change(my.money, my.coins.num )
+
+print(my.change)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgfae505f" class="outline-2">
+<h2 id="orgfae505f"><span class="section-number-2">11.</span> Problem 48</h2>
+<div class="outline-text-2" id="text-11">
+<p>
+<a href="https://projecteuler.net/problem=48">Link to the problem</a>
+The series, \[1^1 + 2^2 + 3^3 + ... + 10^{10} = 10405071317\]
+</p>
+
+<p>
+Find the last ten digits of the series, \[1^1 + 2^2 + 3^3 + ... + 1000^{1000}\]
+</p>
+
+<p>
+This looks pretty similar to <a href="#org1a1e686">Problem 13</a>, so why not to use Lisp again for its string abilities?
+I have faced with <code>max-lisp-eval-depth</code> error though, so we&rsquo;ll increase it, as well as <code>max-specpdl-size.</code>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #a7c080;">(</span><span style="color: #e67e80;">setq</span> <span style="color: #7fbbb3;">max-lisp-eval-depth</span> <span style="color: #d699b6;">10000</span><span style="color: #a7c080;">)</span>
+<span style="color: #a7c080;">(</span><span style="color: #e67e80;">setq</span> <span style="color: #7fbbb3;">max-specpdl-size</span> <span style="color: #d699b6;">10000</span><span style="color: #a7c080;">)</span>
+
+<span style="color: #a7c080;">(</span><span style="color: #e67e80;">defun</span> <span style="color: #a7c080;">self-power-sum</span> <span style="color: #e67e80;">(</span>x<span style="color: #e67e80;">)</span>
+        <span style="color: #e67e80;">(</span><span style="color: #e67e80;">if</span> <span style="color: #7fbbb3;">(</span><span style="color: #83c092;">=</span> x <span style="color: #d699b6;">0</span><span style="color: #7fbbb3;">)</span> <span style="color: #d699b6;">0</span>
+        <span style="color: #7fbbb3;">(</span><span style="color: #83c092;">+</span> <span style="color: #83c092;">(</span><span style="color: #83c092;">expt</span> x x<span style="color: #83c092;">)</span> <span style="color: #83c092;">(</span>self-power-series <span style="color: #a7c080;">(</span><span style="color: #83c092;">-</span> x <span style="color: #d699b6;">1</span><span style="color: #a7c080;">)</span><span style="color: #83c092;">)</span><span style="color: #7fbbb3;">)</span><span style="color: #e67e80;">)</span><span style="color: #a7c080;">)</span>
+
+<span style="color: #a7c080;">(</span><span style="color: #e67e80;">setq</span> mylist
+  <span style="color: #e67e80;">(</span><span style="color: #83c092;">list</span><span style="color: #7fbbb3;">(</span>self-power-sum <span style="color: #d699b6;">1000</span><span style="color: #7fbbb3;">)</span><span style="color: #e67e80;">)</span><span style="color: #a7c080;">)</span>
+
+<span style="color: #a7c080;">(</span><span style="color: #83c092;">message</span><span style="color: #e67e80;">(</span><span style="color: #83c092;">substring</span> <span style="color: #7fbbb3;">(</span><span style="color: #83c092;">format</span> <span style="color: #a7c080;">"%s"</span> mylist<span style="color: #7fbbb3;">)</span> <span style="color: #d699b6;">-11</span> <span style="color: #d699b6;">-1</span><span style="color: #e67e80;">)</span><span style="color: #a7c080;">)</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Georgy</p>
+<p class="date">Created: 2023-01-25 Wed 13:47</p>
+</div>
+</body>
+</html>
